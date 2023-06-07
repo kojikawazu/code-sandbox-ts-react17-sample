@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  memo,
-  useEffect,
-  useState,
-  useCallback,
-  VFC
-} from "react";
+import { ChangeEvent, memo, useEffect, useState, VFC } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -17,15 +10,15 @@ import {
   FormControl,
   FormLabel,
   Input,
-  ModalFooter
+  ModalFooter,
 } from "@chakra-ui/react";
 
-import { LoginUser } from "../../../types/api/loginUser";
+import { User } from "../../../types/api/user";
 import { PrimaryButton } from "../../atoms/button/PrimaryButton";
 
 // propsの型
 type Props = {
-  user: LoginUser | null;
+  user: User | undefined;
   isOpen: boolean;
   isAdmin?: boolean;
   onClose: () => void;
@@ -53,27 +46,27 @@ export const UserDetailModal: VFC<Props> = memo((props) => {
   }, [user]);
 
   // 各入力欄に変更があった時の挙動
-  const onChangeUserName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeUserName = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
-  }, []);
-  const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  };
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
-  }, []);
-  const onChangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  };
+  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  }, []);
-  const onChangePhone = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  };
+  const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
-  }, []);
+  };
 
   // 更新ボタン押下時の挙動
-  const onClickUpdate = useCallback(() => {
+  const onClickUpdate = () => {
     alert("更新");
     console.log(`username: ${username}`);
     console.log(`name:     ${name}`);
     console.log(`email:    ${email}`);
     console.log(`phone:    ${phone}`);
-  }, [username, name, email, phone]);
+  };
 
   return (
     <>

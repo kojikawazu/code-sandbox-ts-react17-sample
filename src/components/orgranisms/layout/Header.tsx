@@ -1,4 +1,5 @@
-import { memo, useCallback, VFC } from "react";
+/** eslint-disable react-hooks/exhaustive-deps */
+import React, { memo, useCallback, VFC } from "react";
 import { useHistory } from "react-router-dom";
 import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 
@@ -16,17 +17,17 @@ export const Header: VFC = memo(() => {
   const onClickHome = useCallback(() => {
     // ホーム画面へ
     history.push("/home");
-  }, [history]);
+  }, []);
   // ユーザー管理画面ボタン押下時の挙動
   const onClickUserManagement = useCallback(() => {
     // ユーザー管理画面へ
     history.push("/home/user_management");
-  }, [history]);
+  }, []);
   // 設定画面ボタン押下時の挙動
   const onClickSetting = useCallback(() => {
     // 設定画面へ
     history.push("/home/setting");
-  }, [history]);
+  }, []);
 
   return (
     <>

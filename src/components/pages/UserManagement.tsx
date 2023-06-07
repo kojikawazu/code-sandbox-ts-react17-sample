@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useCallback, useEffect, VFC } from "react";
 import {
   Center,
@@ -10,9 +9,9 @@ import {
 
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { useSelectUser } from "../../hooks/useSelectUser";
-import { useLoginUser } from "../../hooks/useLoginUser";
+import { useLoginUser } from "../../hooks/providers/useLoginUserProvider";
 import { UserCard } from "../orgranisms/user/UserCard";
-import { UserDetailModal } from "../orgranisms/user/UserDetailModal";
+import { UserDetailModal } from "../orgranisms/modal/UserDetailModal";
 
 // ユーザー管理画面コンポーネント
 export const UserManagement: VFC = memo(() => {
@@ -27,7 +26,7 @@ export const UserManagement: VFC = memo(() => {
   // 初回の1回ユーザーデータの取得
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [getUsers]);
   // カード押下時の挙動
   const onClickUser = useCallback(
     (id: number) => {
@@ -41,12 +40,12 @@ export const UserManagement: VFC = memo(() => {
       {loading ? (
         /** ローディング中 */
         <Center h="100vh">
-          <Spinner />
+          <Spinner color="teal.200" />
         </Center>
       ) : (
         <Wrap p={{ base: 4, md: 10 }}>
           {/** ユーザーデータをループ */}
-          {users.map((user) => (
+          {users.map(user => (
             <WrapItem key={user.id} mx="auto">
               <UserCard
                 id={user.id}
@@ -61,10 +60,10 @@ export const UserManagement: VFC = memo(() => {
       )}
       {/** モーダル */}
       <UserDetailModal
-        user={selectedUser}
         isOpen={isOpen}
         isAdmin={loginUser?.isAdmin}
         onClose={onClose}
+        user={selectedUser}
       />
     </>
   );

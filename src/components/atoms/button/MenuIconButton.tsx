@@ -1,4 +1,4 @@
-import { memo, VFC } from "react";
+import { VFC } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -8,7 +8,7 @@ type Props = {
 };
 
 // メニューアイコンボタンコンポーネント
-export const MenuIconButton: VFC<Props> = memo((props) => {
+export const MenuIconButton: VFC<Props> = (props) => {
   // propsの分割代入
   const { onOpen } = props;
 
@@ -23,4 +23,4 @@ export const MenuIconButton: VFC<Props> = memo((props) => {
       onClick={onOpen}
     />
   );
-});
+};

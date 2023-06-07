@@ -12,7 +12,7 @@ export const Login: VFC = memo(() => {
 
   // state
   // ログイン中ユーザー
-  const [userId, setUserId] = useState<string>("");
+  const [userId, setUserId] = useState("");
 
   // 入力した時の挙動
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {

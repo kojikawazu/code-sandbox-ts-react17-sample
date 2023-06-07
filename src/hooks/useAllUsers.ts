@@ -1,9 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/** eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useCallback, useState } from "react";
 
 import { useMessage } from "./useMessage";
-import { LoginUser } from "../types/api/loginUser";
+import { User } from "../types/api/user";
 
 // ユーザー全取得コンポーネント(カスタムhooks)
 export const useAllUsers = () => {
@@ -15,7 +15,7 @@ export const useAllUsers = () => {
   // ローディングステータス
   const [loading, setLoading] = useState<boolean>(false);
   // ユーザーリスト
-  const [users, setUsers] = useState<Array<LoginUser>>([]);
+  const [users, setUsers] = useState<Array<User>>([]);
 
   // ユーザーの取得関数
   const getUsers = useCallback(() => {
@@ -23,12 +23,12 @@ export const useAllUsers = () => {
     setLoading(true);
     // データの取得
     axios
-      .get<Array<LoginUser>>("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
+      .get<Array<User>>("https://jsonplaceholder.typicode.com/users")
+      .then(res => {
         // ユーザーリストの設定
         setUsers(res.data);
       })
-      .catch((err) => {
+      .catch(() => {
         // エラー
         showMessage({ title: "ユーザー取得に失敗しました", status: "error" });
       })
